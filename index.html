@@ -23,11 +23,21 @@
             <div>
                 <p>
                     {{name}}
-                    <h2>Uso de V-if</h2>
-                    <span v-if="ver">
-                        etiqueta span mostrada
-                    </span>
+                <h2>Uso de V-if</h2>
+                <span v-if="ver">
+                    Etiqueta span mostrada
+                </span>
                 </p>
+                <div>
+                    <ul>
+                        <li v-for="producto in productos">
+                            {{producto.name}} 
+                            <span>
+                                $ {{producto.price}}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis delectus impedit voluptatum, sunt tempora
@@ -44,8 +54,15 @@
             data: {
                 titulo: 'Intro to Vue Js...',
                 name: 'Andres',
-                ver:false,
+                ver: false,
+                productos: [
+                    { name: 'producto 1 ', price: 20 },
+                    { name: 'producto 2', price: 15 },
+                    { name: 'producto 3', price: 4 },
+                    { name: 'producto 4', price: 78 },
+                    { name: 'producto 5', price: 52 },
 
+                ]
             }
         })
     </script>
