@@ -21,6 +21,15 @@
                 <input v-model="titulo" type="text">
             </div>
             <div>
+                <p>
+                    {{name}}
+                    <h2>Uso de V-if</h2>
+                    <span v-if="ver">
+                        etiqueta span mostrada
+                    </span>
+                </p>
+            </div>
+            <div>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis delectus impedit voluptatum, sunt tempora
                 voluptates debitis, ut reprehenderit nam ex maiores eius nobis placeat fugit aliquid consequuntur sint
                 dolorum animi.
@@ -33,7 +42,10 @@
         var app = new Vue({
             el: '#app',
             data: {
-                titulo: 'Intro to Vue Js...'
+                titulo: 'Intro to Vue Js...',
+                name: 'Andres',
+                ver:false,
+
             }
         })
     </script>
