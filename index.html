@@ -31,12 +31,23 @@
                 <div>
                     <ul>
                         <li v-for="producto in productos">
-                            {{producto.name}} 
+                            {{producto.name}}
                             <span>
                                 $ {{producto.price}}
                             </span>
                         </li>
                     </ul>
+                </div>
+                <div>
+                    <p>
+                        {{message}}
+                    </p>
+                
+                    <button  @click="reversef()">Cambar</button>
+                    <p>
+                        {{contador}}
+                        <button @click="incremento()">Incrementar</button>
+                    </p>
                 </div>
             </div>
             <div>
@@ -62,8 +73,19 @@
                     { name: 'producto 4', price: 78 },
                     { name: 'producto 5', price: 52 },
 
-                ]
-            }
+                ],
+                message:'hola',
+                contador: 0,
+            },
+            methods: {
+                reversef(){
+                    //  console.log("variable mensage");
+                    this.message= this.message.split('').reverse().join('');
+                },
+                incremento(){
+                    this.contador = this.contador + 1;
+                }
+            },
         })
     </script>
 </body>
