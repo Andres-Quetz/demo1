@@ -8,6 +8,9 @@ var app = new Vue({
         op1: 0,
         name: 'Andres',
         ver: false,
+        historial: [
+            
+        ],
         productos: [
             { name: 'producto 1 ', price: 20 },
             { name: 'producto 2', price: 15 },
@@ -36,13 +39,17 @@ var app = new Vue({
 
         },
         calculate() {
-            this.display = this.op1 + this.display;
+        //      {tipo: '+', op1: 10, op2: 20, resultado: 50 },
+            num2=this.display;
+            this.display = parseInt(this.op1 ) + parseInt(num2);
+            this.historial.push({tipo: '+', op1: parseInt(this.op1), op2: num2, resultado: this.display });
         },
         reversef() {
             //  console.log("variable mensage");
             this.message = this.message.split('').reverse().join('');
         },
         incremento() {
+
             this.contador = this.contador + 1;
         }
     },
