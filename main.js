@@ -8,8 +8,8 @@ var app = new Vue({
         op1: 0,
         name: 'Andres',
         ver: false,
+        type: null,
         historial: [
-            
         ],
         productos: [
             { name: 'producto 1 ', price: 20 },
@@ -24,7 +24,19 @@ var app = new Vue({
     },
     methods: {
 
-        operacion() {
+        operacion(operador) {
+            if (operador == '+') {
+                this.type = '+';
+            }
+            if (operador == '-') {
+                this.type = '-';
+            }
+            if (operador == '*') {
+                this.type = '*';
+            }
+            if (operador == '/') {
+                this.type = '/';
+            }
             this.op1 = this.display;
             this.display = 0;
         },
@@ -39,10 +51,28 @@ var app = new Vue({
 
         },
         calculate() {
-        //      {tipo: '+', op1: 10, op2: 20, resultado: 50 },
-            num2=this.display;
-            this.display = parseInt(this.op1 ) + parseInt(num2);
-            this.historial.push({tipo: '+', op1: parseInt(this.op1), op2: num2, resultado: this.display });
+            //      {tipo: '+', op1: 10, op2: 20, resultado: 50 },
+            num2 = this.display;
+            if (this.type == '+') {
+                this.display = parseInt(this.op1) + parseInt(num2);
+                this.historial.push({ tipo: '+', op1: parseInt(this.op1), op2: num2, resultado: this.display });
+            }
+            if (this.type == '-') {
+                this.display = parseInt(this.op1) - parseInt(num2);
+                this.historial.push({ tipo: '-', op1: parseInt(this.op1), op2: num2, resultado: this.display });
+            }
+            if (this.type == '*') {
+                this.display = parseInt(this.op1) * parseInt(num2);
+                this.historial.push({ tipo: '*', op1: parseInt(this.op1), op2: num2, resultado: this.display });
+            }
+            if (this.type == '/') {
+                this.display = parseInt(this.op1) / parseInt(num2);
+                this.historial.push({ tipo: '/', op1: parseInt(this.op1), op2: num2, resultado: this.display });
+            }
+
+        },
+        clean(){
+            this.display = 0;
         },
         reversef() {
             //  console.log("variable mensage");
