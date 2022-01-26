@@ -11,6 +11,7 @@ var app = new Vue({
         type: null,
         historial: [
         ],
+        
         productos: [
             { name: 'producto 1 ', price: 20 },
             { name: 'producto 2', price: 15 },
@@ -22,6 +23,15 @@ var app = new Vue({
         message: 'hola',
         contador: 0,
     },
+    mounted() {
+        if (localStorage.getItem('historial')) {
+          try {
+            this.historial = JSON.parse(localStorage.getItem('historial'));
+          } catch(e) {
+            localStorage.removeItem('historial');
+          }
+        }
+      },
     methods: {
 
         operacion(operador) {
@@ -51,26 +61,42 @@ var app = new Vue({
 
         },
         calculate() {
+            if (!this.display) {
+                return;
+              }
             //      {tipo: '+', op1: 10, op2: 20, resultado: 50 },
             num2 = this.display;
             if (this.type == '+') {
                 this.display = parseInt(this.op1) + parseInt(num2);
                 this.historial.push({ tipo: '+', op1: parseInt(this.op1), op2: num2, resultado: this.display });
+                
             }
             if (this.type == '-') {
                 this.display = parseInt(this.op1) - parseInt(num2);
                 this.historial.push({ tipo: '-', op1: parseInt(this.op1), op2: num2, resultado: this.display });
+                
             }
             if (this.type == '*') {
                 this.display = parseInt(this.op1) * parseInt(num2);
                 this.historial.push({ tipo: '*', op1: parseInt(this.op1), op2: num2, resultado: this.display });
+                
             }
             if (this.type == '/') {
                 this.display = parseInt(this.op1) / parseInt(num2);
                 this.historial.push({ tipo: '/', op1: parseInt(this.op1), op2: num2, resultado: this.display });
+                
             }
-
+            this.saveHistorial();
         },
+        removeHistoria(x) {
+            this.historial.splice(x, 1);
+            this.saveHistorial();
+          },
+        saveHistorial() {
+            const parsed = JSON.stringify(this.historial);
+            localStorage.setItem('historial', parsed);
+          },
+          
         clean(){
             this.display = 0;
         },
